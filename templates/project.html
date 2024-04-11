@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Task Management UI</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'><link rel="stylesheet" href="static/assets/css/project.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="static/assets/css/dashboard.css">
+<link rel="stylesheet" href="static/assets/css/popup.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="static/assets/css/jquery_popup.css" /> -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/jquery_popup.css" />
+  <script src="static/assets/js/popup.js"></script>
+
+</head>
+<body>
+  <!-- Add priority task -->
+  <div class="contactdiv">
+    <form class="form" action="/add_task" id="contact" method="post">
+      <div class="img" id="cancel">
+        <i class="ri-close-fill"></i>
+      </div>
+      <h3>Add task</h3>
+      <label for="priority">Task Priority:</label>
+        <select name="priority" id="priority">
+            <option value="Highest_Priority" class="prioritycategory">Highest Priority</option>
+            <option value="Medium_Priority" class="prioritycategory">Medium Priority</option>
+            <option value="Low_Priority" class="prioritycategory">Low Priority</option>
+            <option value="Additional_Task" class="prioritycategory">Additional Task</option>
+        </select><br><br>
+
+      <label>Task name : <span>*</span></label>
+      <input type="text" name="task_name" id="name" placeholder="Task1"/>
+      <label>Description : <span>*</span></label>
+      <input type="text" name="description" id="name" placeholder="Describe task here"/>
+      <label>Deadline : <span>*</span></label>
+      <input type="date" name="deadline" id="name"/>
+      <label>Assigned to (email) : <span>*</span></label>
+      <input type="text" name="assigned_to" id="name" placeholder="Email separated by comma"/>
+      
+      <input type="hidden" name="project_name" value="{{ project }}">
+
+      <input type="submit" value="Submit" class="submitbtn" id="cancel">
+      <input type="button" id="cancel" value="Cancel"/>
+      <br/>
+    </form>
+  </div>
+
+
+<!-- partial:index.partial.html -->
+<!-- Working version of https://dribbble.com/shots/14552329--Exploration-Task-Management-Dashboard -->
+<div class='app'>
+  <main class='project'>
+    <div class='project-info'>
+      <h1>Dashboard</h1>
+      <div class='project-participants'>
+        <svg class="onclick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 11H7V13H11V17H13V13H17V11H13V7H11V11Z"></path></svg>
+        <!-- <button class='project-participants__add onclick' >Add Participant</button>   -->
+      </div>
+    </div>
+    <div class='project-tasks'>
+      <div class='project-column'>        
+        
+        <div class='project-column-heading'>
+          <h2 class='project-column-heading__title'>Highest Priority</h2><button class='project-column-heading__options' ><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+        {% for task in hp_tasks %}
+        <div class='task' draggable='true'>
+          <div class='task__tags'><span class='task__tag task__tag--copyright'>{{task[3]}}</span><button class='task__options'><a href="/delete_task/{{project}}/hp/{{task[0]}}"><i class="ri-delete-bin-5-fill"></i></a></button></div>
+          <p>{{task[4]}}</p>
+          <div class='task__stats'> 
+            <span><time datetime=""><i class="fas fa-flag"></i>{{task[5]}}</time></span>
+            <span class='task__owner'></span>
+          </div>
+        </div>
+        {% endfor %}        
+      </div>
+
+      <div class='project-column'><div class='project-column-heading'>
+          <h2 class='project-column-heading__title'>Medium Priority</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+        {% for task in mp_tasks %}
+        <div class='task' draggable='true'>
+          <div class='task__tags'><span class='task__tag task__tag--copyright'>{{task[3]}}</span><button class='task__options'><a href="/delete_task/{{project}}/mp/{{task[0]}}"><i class="ri-delete-bin-5-fill"></i></a></button></div>
+          <p>{{task[4]}}</p>
+          <div class='task__stats'>
+            <span><time datetime=""><i class="fas fa-flag"></i>{{task[5]}}</time></span>
+            <span class='task__owner'></span>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+
+        <div class='project-column'><div class='project-column-heading'>
+          <h2 class='project-column-heading__title'>Low Priority</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+        {% for task in lp_tasks %}
+        <div class='task' draggable='true'>
+          <div class='task__tags'><span class='task__tag task__tag--copyright'>{{task[3]}}</span><button class='task__options'><a href="/delete_task/{{project}}/lp/{{task[0]}}"><i class="ri-delete-bin-5-fill"></i></a></button></div>
+          <p>{{task[4]}}</p>
+          <div class='task__stats'>
+            <span><time datetime=""><i class="fas fa-flag"></i>{{task[5]}}</time></span>
+            <span class='task__owner'></span>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+        
+        <div class='project-column'><div class='project-column-heading'>
+          <h2 class='project-column-heading__title'>Additional Task</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+        {% for task in a_tasks %}
+        <div class='task' draggable='true'>
+          <div class='task__tags'><span class='task__tag task__tag--copyright'>{{task[3]}}</span><button class='task__options'><a href="/delete_task/{{project}}/at/{{task[0]}}"><i class="ri-delete-bin-5-fill"></i></a></button></div>
+          <p>{{task[4]}}</p>
+          <div class='task__stats'>
+            <span><time datetime=""><i class="fas fa-flag"></i>{{task[5]}}</time></span>
+            <span class='task__owner'></span>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+
+    </div>
+  </main>
+  <aside class='task-details'>
+    <div class="messages-section">
+      <button class="messages-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="15" y1="9" x2="9" y2="15" />
+          <line x1="9" y1="9" x2="15" y2="15" /></svg>
+      </button>
+      <div class="projects-section-header">
+        <p>Client Messages</p>
+      </div>
+      <div class="messages">
+
+
+    
+        {% for chat in chats|limit(3)%}
+        <div class="message-box">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="profile image">
+          <div class="message-content">
+            <div class="message-header">
+              <div class="name">{{chat[2]}}</div>
+            </div>
+            <p class="message-line">
+              {{chat[4]}}
+            </p>
+            <p class="message-line time">
+              {{chat[3]}}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div>
+          <div>
+            <form class="chat" action="/add_chat"  method="post">
+              <input type="text" name="message" id="name" placeholder="Enter message here ..." required/>
+              <input type="hidden" name="project_name" value="{{ project }}">  
+              <input class="sendmsg" type="submit" value="Send">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+<!-- partial -->
+
+</body>
+</html>

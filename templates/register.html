@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'><link rel="stylesheet" href="static/assets/css/login.css">
+<link rel="stylesheet" href="static/assets/css/fontawesome.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- Working version of https://dribbble.com/shots/14552329--Exploration-Task-Management-Dashboard -->
+
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="nav-bar">
+
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="{{url_for('index')}}" class="logo">
+                <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Taskify</h1>
+              
+              </a>
+              <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav-element">
+              <li class="scroll-to-section-home"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#services">Services</a></li>
+              <li class="scroll-to-section"><a href="#about">About</a></li>
+              <li class="scroll-to-section"><a href="#contact">Contact</a></li>
+              
+              <li class="scroll-to-section-loging"><a href="/login">Login/Register</a></li> 
+              
+            </ul>        
+            <!-- <a class='menu-trigger'>
+              <span>Menu</span>
+            </a> -->
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+
+<div class="login-box">
+  <h2>Register</h2>
+  <form action="/registration_verify" method="post">
+    <div class="user-box">
+      <input type="text" name="username" required="">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+        <input type="email" name="email" required="">
+        <label>Email</label>
+    </div>
+    <div class="user-box">
+        <input type="Text" name="contactNo" required="">
+        <label>Contact No </label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="">
+      <label>Password</label>
+    </div>
+
+    <div class="btn">
+      
+   
+        <a href="/register">
+          <button class="regi-btn">
+          <input type="submit" value="Register">
+        </button>
+        </a>
+      
+
+    </div>
+  </form>
+</div>
+<!-- partial -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js'></script><script  src="./script.js"></script> -->
+
+</body>
+</html>

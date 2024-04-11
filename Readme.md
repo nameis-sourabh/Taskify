@@ -41,7 +41,7 @@ Task Management System (TMS) is a web-based platform designed to streamline task
 
 3. Start the development server:
 
-4. Access the application at `http://localhost:3000` in your web browser.
+4. Access the application at `http://127.0.0.1:5000` in your web browser.
 
 ## Contributing
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests.

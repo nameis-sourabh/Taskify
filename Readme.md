@@ -22,20 +22,11 @@ Task Management System (TMS) is a web-based platform designed to streamline task
 - Collaborate with team members by sharing tasks, leaving comments, and updating task status in real-time.
 - Mention team members to notify them about specific tasks or updates.
 
-### 5. User Authentication and Security
-- Secure user authentication system to protect user data and privacy.
-- Implement role-based access control to manage user permissions.
-
-### 6. Mobile Responsiveness
-- Responsive design ensures accessibility across various devices, enabling users to manage tasks on the go.
-
 ## Technologies Used
 
-- Frontend: HTML, CSS, JavaScript, React.js (or similar framework for dynamic UI).
-- Backend: Node.js, Express.js, MongoDB (or any other database of choice for storing task data).
-- Authentication: JSON Web Tokens (JWT) for secure user authentication.
-- Real-Time Updates: WebSocket technology for real-time task updates and collaboration features.
-- Notifications: Integration with notification services (e.g., Firebase Cloud Messaging) for push notifications.
+- Frontend: HTML, CSS, JavaScript.
+- Backend: Python , flask, sqlite, SMTP mail
+- Notifications: Notification on fixed time interval
 
 ## Getting Started
 
@@ -45,3 +36,15 @@ Task Management System (TMS) is a web-based platform designed to streamline task
 
 ### Installation
 1. Clone the repository:
+
+2. Install dependencies:
+
+3. Start the development server:
+
+4. Access the application at `http://localhost:3000` in your web browser.
+
+## Contributing
+Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests.
+
+## License
+This project is licensed under the [MIT License](LICENSE).
